@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+
+  "name": "Hide Twitter Trends",
+  "version": "1.0.0",
+  "description": "Hide trends on the sidebar (`What's happening`).",
+  "author": "Susumu OTA",
+  "homepage_url": "https://github.com/susumuota/hide-twitter-trends",
+
+  "content_scripts": [{ "matches": ["https://twitter.com/*"], "js": ["content.js"] }]
+}
