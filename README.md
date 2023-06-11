@@ -22,6 +22,7 @@ Specify `selector` and `style` in [content.js](content.js). `display: none` hide
 ```javascript
   const patterns = [
     { selector: 'div:has(> div > div > div > form[aria-label="Search Twitter"])', style: 'opacity: 0.5' },
+    { selector: 'div:has(> aside[aria-label="Get Verified"])', style: 'display: none' },
     { selector: 'div:has(> div > section > div[aria-label="Timeline: Trending now"])', style: 'display: none' },
     { selector: 'div:has(> div > aside[aria-label="Who to follow"])', style: 'display: none' },
     { selector: 'div:has(> nav[aria-label="Footer"])', style: 'opacity: 0.1' },
