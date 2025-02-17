@@ -1,6 +1,6 @@
 # Hide Twitter Trends
 
-Hide Twitter trends on the sidebar (`What's happening`).
+Hide `What’s happening`, `Who to follow`, `Subscribe to Premium` and more on the Twitter sidebar.
 
 ## Installation
 
@@ -21,11 +21,13 @@ Specify `selector` and `style` in [content.js](content.js). `display: none` hide
 
 ```javascript
   const patterns = [
-    { selector: 'div:has(> div > div > div > form[aria-label="Search Twitter"])', style: 'opacity: 0.5' },
-    { selector: 'div:has(> aside[aria-label="Get Verified"])', style: 'display: none' },
-    { selector: 'div:has(> div > section > div[aria-label="Timeline: Trending now"])', style: 'display: none' },
+    { selector: 'div:has(> div > div > div > form[aria-label="Search"])', style: 'opacity: 0.8' },
+    { selector: 'div:has(> div > aside[aria-label="Subscribe to Premium"])', style: 'display: none' },
+    { selector: 'div:has(> section > div[aria-label="Timeline: Trending now"])', style: 'display: none' },
     { selector: 'div:has(> div > aside[aria-label="Who to follow"])', style: 'display: none' },
     { selector: 'div:has(> nav[aria-label="Footer"])', style: 'opacity: 0.1' },
+    { selector: 'div:has(> div[data-testid="DMDrawer"])', style: 'display: none' },
+    { selector: 'div:has(> div[data-testid="GrokDrawer"])', style: 'display: none' },
   ];
 ```
 
@@ -36,4 +38,4 @@ MIT License. See [LICENSE](LICENSE) for details.
 ## Author
 
 Susumu OTA
-
+- https://github.com/susumuota
