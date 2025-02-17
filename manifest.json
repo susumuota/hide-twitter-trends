@@ -3,7 +3,7 @@
 
   "name": "Hide Twitter Trends",
   "version": "1.2.0",
-  "description": "Hide Twitter trends on the sidebar (`What's happening`).",
+  "description": "Hide `What’s happening`, `Who to follow`, `Subscribe to Premium` and more on the Twitter sidebar.",
   "author": "Susumu OTA",
   "homepage_url": "https://github.com/susumuota/hide-twitter-trends",
 
