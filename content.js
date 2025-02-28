@@ -4,9 +4,9 @@
 window.addEventListener('load', () => {
   const patterns = [
     { selector: 'div:has(> div > div > div > form[aria-label="Search"])', style: 'opacity: 0.8' },
-    { selector: 'div:has(> div > aside[aria-label="Subscribe to Premium"])', style: 'display: none' },
-    { selector: 'div:has(> section > div[aria-label="Timeline: Trending now"])', style: 'display: none' },
-    { selector: 'div:has(> div > aside[aria-label="Who to follow"])', style: 'display: none' },
+    { selector: 'div:has(> div > aside[aria-label*="Subscribe to Premium"])', style: 'display: none' },
+    { selector: 'div:has(> section > div[aria-label*="Timeline: Trending now"])', style: 'display: none' },
+    { selector: 'div:has(> div > aside[aria-label*="Who to follow"])', style: 'display: none' },
     { selector: 'div:has(> nav[aria-label="Footer"])', style: 'opacity: 0.1' },
     { selector: 'div:has(> div[data-testid="DMDrawer"])', style: 'display: none' },
     { selector: 'div:has(> div[data-testid="GrokDrawer"])', style: 'display: none' },
