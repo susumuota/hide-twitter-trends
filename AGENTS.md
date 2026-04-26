@@ -4,18 +4,27 @@ This file provides guidance to coding agents when working with code in this repo
 
 ## Project
 
-Chrome extension (Manifest V3) that hides sidebar elements on x.com / twitter.com — trends, "Who to follow", premium signup, news sidebar, Grok/DM drawers, etc. The entire extension is `manifest.json` + `content.js`; there is no build step, no package manager, no test suite.
+Chrome extension (Manifest V3) that hides sidebar elements on x.com / twitter.com — trends, "Who to follow", premium signup, news sidebar, Grok/DM drawers, etc. The extension is just `manifest.json` + `content.css`; there is no JS, no build step, no package manager, no test suite.
 
 ## Loading / testing changes
 
-Reload the unpacked extension in `chrome://extensions` (Developer mode → Load unpacked → this folder), then refresh an x.com tab to see the effect. There is no `npm` / lint / test command — verification is manual in the browser. Style-set events are logged via `console.debug` in the page console.
+Reload the unpacked extension in `chrome://extensions` (Developer mode → Load unpacked → this folder), then refresh an x.com tab to see the effect. There is no `npm` / lint / test command — verification is purely visual in the browser.
 
 ## Architecture
 
-`content.js` runs at page load on x.com / twitter.com. It defines a list of `{ selector, style }` patterns, locates `div#react-root`, and attaches a single `MutationObserver` over the whole subtree. On every mutation it re-applies each pattern's inline `style` to the first matching element (skipping if already set). This is the mechanism that keeps elements hidden as Twitter's SPA re-renders the sidebar.
+Chrome injects `content.css` as a content-script stylesheet on x.com / twitter.com. Each rule uses CSS `:has()` to anchor on stable child attributes (`data-testid`, `aria-label`, `href`) rather than Twitter's volatile class names — so when X changes its DOM, the fix is almost always a selector tweak in `content.css`.
 
-Selectors rely heavily on CSS `:has()` to anchor on stable child attributes (`data-testid`, `aria-label`, `href`) rather than Twitter's volatile class names — when X changes its DOM, the fix is almost always a selector tweak in `content.js`, not a structural change. Recent commits (`fix: news sidebar query pattern`, `feat: improve premium signup selector`) follow this pattern.
-
-`style` values are chosen per element: `display: none` removes from layout, `visibility: hidden` preserves layout, `opacity: <n>` keeps interactivity (used for the search box and footer so links remain clickable).
+All declarations use `!important` to win against Twitter's inline styles. Hide-style choices are deliberate per element:
+- `display: none` — removes from layout (most sidebar widgets)
+- `opacity: <n>` — keeps the element interactive (search box at 0.8, footer at 0.1)
 
 Bump `manifest.json`'s `version` when shipping user-visible changes.
+
+## Commit messages
+
+- Single line only — no body.
+- Do not append a `Co-Authored-By:` trailer.
+
+## History note
+
+Prior versions (≤1.x) used `content.js` with a `MutationObserver` over `#react-root` to re-apply inline styles on every DOM mutation. v2.0.0 replaced that with a static stylesheet — the observer is no longer needed because CSS rules apply continuously regardless of SPA re-renders. If a future Twitter change applies an inline style we cannot beat with `!important`, the observer approach can be reintroduced for that single rule.
