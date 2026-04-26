@@ -4,7 +4,9 @@ This file provides guidance to coding agents when working with code in this repo
 
 ## Project
 
-Chrome extension (Manifest V3) that hides sidebar elements on x.com / twitter.com — trends, "Who to follow", premium signup, news sidebar, Grok/DM drawers, etc. The extension is just `manifest.json` + `content.css`; there is no JS, no build step, no package manager, no test suite.
+Chrome extension (Manifest V3) that hides sidebar elements on x.com / twitter.com — trends, "Who to follow", premium signup, news sidebar, etc. The extension is just `manifest.json` + `content.css`; there is no JS, no build step, no package manager, no test suite.
+
+Selectors are written per UI language: when an `aria-label` is the anchor (e.g. `"Who to follow"`), a parallel rule with the localized label (e.g. `"関連性の高いアカウント"`) is needed. Language-independent anchors (`data-testid`, `href`) only need one rule.
 
 ## Loading / testing changes
 
@@ -16,7 +18,7 @@ Chrome injects `content.css` as a content-script stylesheet on x.com / twitter.c
 
 All declarations use `!important` to win against Twitter's inline styles. Hide-style choices are deliberate per element:
 - `display: none` — removes from layout (most sidebar widgets)
-- `opacity: <n>` — keeps the element interactive (search box at 0.8, footer at 0.1)
+- `opacity: <n>` — keeps the element interactive (search box at 0.8, footer at 0.2)
 
 Bump `manifest.json`'s `version` when shipping user-visible changes.
 

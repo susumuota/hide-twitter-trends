@@ -2,10 +2,15 @@
 /* SPDX-License-Identifier: MIT */
 
 div:has(> div > div > div > form[aria-label="Search"]) { opacity: 0.8 !important; }
+div:has(> div > div > div > form[aria-label="検索クエリ"]) { opacity: 0.8 !important; }
 div:has(> div > div > div > div > a[href="/i/premium_sign_up"] > div > span > div > span > span) { display: none !important; }
+div:has(> div > aside[aria-label="Subscribe to Premium"]) { display: none !important; }
+div:has(> div > aside[aria-label="プレミアムにサブスクライブ"]) { display: none !important; }
 div:has(> div[data-testid="news_sidebar"]) { display: none !important; }
-div:has(> section > div[aria-label*="Timeline: Trending now"]) { display: none !important; }
-div:has(> div > aside[aria-label*="Who to follow"]) { display: none !important; }
-div:has(> div[data-testid="GrokDrawer"]) { display: none !important; }
-div:has(> div[data-testid="DMDrawer"]) { display: none !important; }
-div:has(> nav[aria-label="Footer"]) { opacity: 0.1 !important; }
+div:has(> section > div[aria-label="Timeline: Trending now"]) { display: none !important; }
+div:has(> section > div[aria-label="タイムライン: 速報"]) { display: none !important; }
+div:has(> div > aside[aria-label="Who to follow"]) { display: none !important; }
+div:has(> div > aside[aria-label="関連性の高いアカウント"]) { display: none !important; }
+div:has(> div > aside[aria-label="おすすめユーザー"]) { display: none !important; }
+div:has(> nav[aria-label="Footer"]) { opacity: 0.2 !important; }
+div:has(> nav[aria-label="フッター"]) { opacity: 0.2 !important; }
